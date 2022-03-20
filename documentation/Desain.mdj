@@ -7577,7 +7577,7 @@
 							"_parent": {
 								"$ref": "AAAAAAF/dYzSwOSlbLw="
 							},
-							"name": "nik",
+							"name": "nik_tamu",
 							"type": "CHAR",
 							"length": "20",
 							"foreignKey": true
@@ -7588,7 +7588,7 @@
 							"_parent": {
 								"$ref": "AAAAAAF/dYzSwOSlbLw="
 							},
-							"name": "tipe_kamar",
+							"name": "id_tipe_kamar",
 							"type": "INTEGER",
 							"length": "11",
 							"foreignKey": true
