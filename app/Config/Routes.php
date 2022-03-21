@@ -21,7 +21,7 @@ $routes->setDefaultController('Home');
 $routes->setDefaultMethod('index');
 $routes->setTranslateURIDashes(false);
 $routes->set404Override();
-$routes->setAutoRoute(true);
+$routes->setAutoRoute(false);
 
 /*
  * --------------------------------------------------------------------
@@ -31,7 +31,21 @@ $routes->setAutoRoute(true);
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-$routes->get('/', 'Home::index');
+
+$the_routes = function () use ($routes) {
+
+    $routes->get('/', 'Home::index');
+
+    $routes->get('petugas', 'Auth::petugas');
+    $routes->post('petugas', 'Auth::petugasSubmit');
+};
+
+// run the normal routes
+$the_routes();
+
+// run routes with localozation
+$routes->group('{locale}', $the_routes);
+
 
 /*
  * --------------------------------------------------------------------

@@ -83,7 +83,7 @@ class App extends BaseConfig
      *
      * @var bool
      */
-    public $negotiateLocale = true;
+    public $negotiateLocale = false;
 
     /**
      * --------------------------------------------------------------------------
