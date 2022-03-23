@@ -18,17 +18,17 @@ class BuatTabelKamar extends Migration
                 'auto_increment' => true
             ],
             'id_tipe_kamar' => [
-                'type' => 'INT',
+                'type'       => 'INT',
                 'constraint' => 11,
-                'unsigned' => true
+                'unsigned'   => true
             ],
             'no_kamar' => [
-                'type' => 'VARCHAR',
+                'type'       => 'VARCHAR',
                 'constraint' => 128
             ],
             'tersedia' => [
-                'type' => 'BOOLEAN',
-                'default' => 1
+                'type'       => 'BOOLEAN',
+                'default'    => 1
             ]
         ];
 

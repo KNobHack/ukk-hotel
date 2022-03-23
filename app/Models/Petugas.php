@@ -7,7 +7,7 @@ use App\Entities\Petugas as PetugasEntity;
 
 class Petugas extends Model
 {
-    protected $DBGroup          = 'default';
+    // protected $DBGroup          = 'default';
     protected $table            = 'petugas';
     protected $primaryKey       = 'id';
     protected $useAutoIncrement = true;
