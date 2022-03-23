@@ -11,22 +11,28 @@ class Petugas extends Entity
     protected $casts   = [];
 
     protected $level = [
-        1 => 'administrator',
-        2 => 'resepsionis'
+        1 => 'Administrator',
+        2 => 'Resepsionis'
     ];
+
+    public function getLevelId()
+    {
+        return $this->attributes['level'];
+    }
 
     public function getLevel()
     {
-        # code...
+        $key = $this->attributes['level'];
+        return $this->level[$key];
     }
 
     public function setPassword($password)
     {
-        # code...
+        $this->attributes['password'] = password_hash($password, PASSWORD_BCRYPT);
     }
 
     public function checkPassword($password)
     {
-        # code...
+        return password_verify($password, $this->attributes['password']);
     }
 }
