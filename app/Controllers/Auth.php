@@ -8,11 +8,21 @@ class Auth extends BaseController
 {
     public function petugas()
     {
-        return view('auth/login-petugas');
+        helper('form');
+        return view('auth/login-petugas', ['validation' => \Config\Services::validation()]);
     }
 
     public function petugasSubmit()
     {
+        helper('form');
+        $form_not_valid = !$this->validate('login_petugas');
+
+        if ($form_not_valid) {
+            return redirect()->back()
+                ->withInput()
+                ->with('errors', $this->validator->getErrors());
+        }
+
         $username = $this->request->getPost('username');
         $password = $this->request->getPost('password');
 
@@ -21,7 +31,10 @@ class Auth extends BaseController
             ->first();
 
         if (!$petugas || $petugas->checkPassword($password) === false) {
-            return redirect()->to('/petugas');
+            return redirect()
+                ->withInput()
+                ->with('alert', ['type' => 'danger', 'message' => 'Username atau Password salah'])
+                ->back();
         }
 
 
