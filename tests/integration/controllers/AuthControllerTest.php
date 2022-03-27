@@ -10,7 +10,6 @@ use Tests\Support\Models\PetugasFabricator;
 class AuthControllerTest extends CIUnitTestCase
 {
 	use FeatureTestTrait, DatabaseTestTrait;
-	use AppDatabaseTrait;
 
 	protected $refresh = true;
 
