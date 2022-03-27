@@ -80,6 +80,9 @@ tests/coverage*
 # Don't save phpunit under version control.
 phpunit
 
+# cypress environment variables file
+cypress.env.json
+
 #-------------------------
 # Composer
 #-------------------------
