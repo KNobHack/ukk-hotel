@@ -1,11 +1,8 @@
 <?php
 
-use App\Entities\Petugas;
 use CodeIgniter\Test\CIUnitTestCase;
 use CodeIgniter\Test\DatabaseTestTrait;
 use CodeIgniter\Test\FeatureTestTrait;
-use Tests\Support\Models\AppDatabaseTrait;
-use Tests\Support\Models\PetugasFabricator;
 
 class AuthControllerTest extends CIUnitTestCase
 {
@@ -21,14 +18,9 @@ class AuthControllerTest extends CIUnitTestCase
 
 	public function testPetugasLoginSubmit()
 	{
+		// Credential yang benar
 		$username = 'admin';
 		$password = '123456789';
-
-		$petugas = fake(PetugasFabricator::class, [
-			'username' => $username,
-			'password' => $password,
-			'level'    => 1
-		]);
 
 		// username tidak ditemukan
 		$this->post('/petugas', [
