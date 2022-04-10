@@ -32,9 +32,10 @@ $routes->setAutoRoute(false);
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 
-$routes->get('/', 'Home::index');
 
 $the_routes = function () use ($routes) {
+    $routes->get('/', 'Home::index');
+
     $routes->get('petugas', 'Auth::petugas');
     $routes->post('petugas', 'Auth::petugasSubmit');
 };
@@ -47,12 +48,10 @@ $routes->group('{locale}', function () use ($the_routes, $routes) {
     $locale = Services::request()->getUri()->getSegment(1);
     $suportedLoceles = (new App)->supportedLocales;
 
-    // Mencegah locale random masuk ke url root
+    // Mencegah locale random masuk ke url
     if (in_array($locale, $suportedLoceles)) {
-        $routes->get('/', 'Home::index');
+        $the_routes();
     }
-
-    $the_routes();
 });
 
 
