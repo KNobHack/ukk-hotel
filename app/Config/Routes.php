@@ -36,6 +36,8 @@ $routes->setAutoRoute(false);
 $the_routes = function () use ($routes) {
     $routes->get('/', 'Home::index');
 
+    $routes->get('dashboard', 'Dashboard::index');
+
     $routes->get('petugas', 'Auth::petugas');
     $routes->post('petugas', 'Auth::petugasSubmit');
 };
