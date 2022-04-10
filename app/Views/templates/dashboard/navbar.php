@@ -1,4 +1,5 @@
 <?php
+helper('inflector');
 if (!isset($breadcumb)) {
   $breadcumbs = \Config\Services::request()->getUri()->getSegments();
 }
@@ -10,13 +11,13 @@ if (!isset($breadcumb)) {
       <ol class="breadcrumb bg-transparent mb-0 pb-0 pt-1 px-0 me-sm-6 me-5">
         <?php foreach ($breadcumbs as $breadcumb) : ?>
           <?php if ($breadcumb === end($breadcumbs)) : ?>
-            <li class="breadcrumb-item text-sm text-white active" aria-current="page"><?= $breadcumb ?></li>
+            <li class="breadcrumb-item text-sm text-white active" aria-current="page"><?= humanize($breadcumb) ?></li>
           <?php else : ?>
-            <li class="breadcrumb-item text-sm"><a class="opacity-5 text-white" href="javascript:;"><?= $breadcumb ?></a></li>
+            <li class="breadcrumb-item text-sm"><a class="opacity-5 text-white" href="javascript:;"><?= humanize($breadcumb) ?></a></li>
           <?php endif ?>
         <?php endforeach ?>
       </ol>
-      <h6 class="font-weight-bolder text-white mb-0">Dashboard</h6>
+      <h6 class="font-weight-bolder text-white mb-0"><?= $heading ?? humanize(end($breadcumbs)) ?></h6>
     </nav>
     <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
       <div class=" ms-md-auto pe-md-3 d-flex align-items-center">
@@ -24,10 +25,10 @@ if (!isset($breadcumb)) {
       </div>
       <ul class="navbar-nav justify-content-end">
         <li class="nav-item d-flex align-items-center">
-          <a href="javascript:;" class="nav-link text-white font-weight-bold px-0">
+          <span class="nav-link text-white font-weight-bold px-0">
             <i class="fa fa-user me-sm-1"></i>
-            <span class="d-sm-inline d-none">Sign In</span>
-          </a>
+            <span class="d-sm-inline d-none"><?= $username ?? 'Administrator' ?></span>
+          </span>
         </li>
       </ul>
     </div>
