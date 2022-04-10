@@ -40,4 +40,10 @@ class Petugas extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+
+    // Custom Function
+    public function whereUsername($username)
+    {
+        return $this->where(['username' => $username])->first();
+    }
 }

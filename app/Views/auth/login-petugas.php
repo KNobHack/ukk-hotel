@@ -1,3 +1,7 @@
+<?php
+helper('form');
+$validation = \Config\Services::validation();
+?>
 <!--
 =========================================================
 * Argon Dashboard 2 - v2.0.1
@@ -113,7 +117,7 @@
                   <?php endif ?>
                   <form role="form" id="form" method="POST" action="/petugas">
                     <div class="mb-3">
-                      <input type="text" name="username" class="form-control form-control-lg <?= ($validation->hasError('username')) ? 'is-invalid' : '' ?>" placeholder="Email" aria-label="Email" value="<?= old('username') ?>">
+                      <input type="text" name="username" class="form-control form-control-lg <?= ($validation->hasError('username')) ? 'is-invalid' : '' ?>" placeholder="Username" aria-label="Username" value="<?= old('username') ?>">
                     </div>
                     <div class="mb-3">
                       <input type="password" name="password" class="form-control form-control-lg <?= ($validation->hasError('password')) ? 'is-invalid' : '' ?>" placeholder="Password" aria-label="Password" value="<?= old('password') ?>">

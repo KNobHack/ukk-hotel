@@ -3,13 +3,13 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
+use Config\Services;
 
 class Auth extends BaseController
 {
     public function petugas()
     {
-        helper('form');
-        return view('auth/login-petugas', ['validation' => \Config\Services::validation()]);
+        return view('auth/login-petugas');
     }
 
     public function petugasSubmit()
@@ -26,9 +26,7 @@ class Auth extends BaseController
         $username = $this->request->getPost('username');
         $password = $this->request->getPost('password');
 
-        $petugas = $this->petugas
-            ->where(['username' => $username])
-            ->first();
+        $petugas = $this->petugas->whereUsername($username);
 
         if (!$petugas || $petugas->checkPassword($password) === false) {
             return redirect()
@@ -37,7 +35,31 @@ class Auth extends BaseController
                 ->back();
         }
 
+        $session = Services::session();
+        $session->set([
+            'username' => $username,
+            'level' => $petugas->level,
+            'level_id' => $petugas->levelId
+        ]);
 
         return redirect()->to('/dashboard');
+    }
+
+    public function logout()
+    {
+        $session = Services::session();
+        $level   = $session->get('level');
+
+        $session->destroy();
+
+        if ($level == 'Administrator') {
+            return redirect()
+                ->to('/petugas')
+                ->with('alert', ['type' => 'success', 'message' => 'Anda berhasil logut']);
+        }
+
+        return redirect()
+            ->to('/')
+            ->with('alert', ['type' => 'success', 'message' => 'Anda berhasil logut']);;
     }
 }
