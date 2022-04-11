@@ -19,7 +19,8 @@ class TipeKamar extends ResourcePresenter
         $tipe_kamar_batch = array_chunk($tipe_kamar, $chunk_size);
         $data['tipe_kamar_batch'] = $tipe_kamar_batch;
 
-        // dd($tipe_kamar_batch);
+        $data['title']   = 'Tampil Tipe Kamar';
+        $data['heading'] = 'Tampil Tipe Kamar';
 
         return view('tipekamar/index', $data);
     }
