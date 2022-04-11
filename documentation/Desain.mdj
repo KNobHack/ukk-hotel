@@ -8154,9 +8154,9 @@
 							"_parent": {
 								"$ref": "AAAAAAF/dYwxw+R+klM="
 							},
-							"name": "tersedia",
-							"type": "BOOLEAN",
-							"length": 0
+							"name": "status",
+							"type": "TINYINT",
+							"length": "3"
 						}
 					]
 				},
@@ -8806,9 +8806,9 @@
 														"$ref": "AAAAAAF/rZqjewRW7Bg="
 													},
 													"font": "Arial;13;0",
-													"left": 75.97900390625,
+													"left": 71.58642578125,
 													"top": 10,
-													"width": 199.021484375,
+													"width": 177.53466796875,
 													"height": 13,
 													"text": "Login Petugas Sequence Diagram"
 												},
@@ -8821,7 +8821,7 @@
 													"font": "Arial;13;1",
 													"left": 10,
 													"top": 10,
-													"width": 60.97900390625,
+													"width": 56.58642578125,
 													"height": 13,
 													"text": "interaction"
 												}

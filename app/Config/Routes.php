@@ -41,7 +41,14 @@ $the_routes = function () use ($routes) {
 
     $routes->get('dashboard', 'Dashboard::index', ['filter' => 'auth:Administrator']);
 
-    $routes->presenter('kamar', ['only' => ['index', 'create', 'update', 'delete']]);
+    $routes->presenter('kamar', [
+        'only' => ['index', 'create', 'update', 'delete']
+    ]);
+
+    $routes->presenter('tipe-kamar', [
+        'only' => ['index', 'show'],
+        'controller' => 'TipeKamar'
+    ]);
 
     $routes->get('logout', 'Auth::logout');
 };
