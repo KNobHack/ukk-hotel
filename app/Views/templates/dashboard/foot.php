@@ -5,20 +5,44 @@
 <script src="/assets/argon/js/plugins/smooth-scrollbar.min.js"></script>
 <script src="/assets/argon/js/plugins/chartjs.min.js"></script>
 
+<!-- Sidebar brighetness drop after modal show -->
 <script>
-	var sidebar = document.getElementById('sidenav-main');
-	console.log(sidebar);
-	var modals = document.getElementsByClassName('modal');
+  var sidebar = document.getElementById('sidenav-main');
 
-	for (let i = 0; i < modals.length; i++) {
-		modals[i].addEventListener('show.bs.modal', function() {
-			sidebar.style.filter = "brightness(50%)";
-		})
+  var modals = document.getElementsByClassName('modal');
 
-		modals[i].addEventListener('hide.bs.modal', function() {
-			sidebar.style.filter = "brightness(100%)";
-		})
-	}
+  for (let i = 0; i < modals.length; i++) {
+    modals[i].addEventListener('show.bs.modal', function() {
+      sidebar.style.filter = "brightness(50%)";
+    })
+
+    modals[i].addEventListener('hide.bs.modal', function() {
+      sidebar.style.filter = "brightness(100%)";
+    })
+  }
+</script>
+
+<!-- Form validation -->
+<script>
+  (function() {
+    'use strict'
+
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    var forms = document.querySelectorAll('.needs-validation')
+
+    // Loop over them and prevent submission
+    Array.prototype.slice.call(forms)
+      .forEach(function(form) {
+        form.addEventListener('submit', function(event) {
+          if (!form.checkValidity()) {
+            event.preventDefault()
+            event.stopPropagation()
+          }
+
+          form.classList.add('was-validated')
+        }, false)
+      })
+  })()
 </script>
 
 <?= $this->renderSection('js') ?>

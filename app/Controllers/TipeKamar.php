@@ -2,7 +2,9 @@
 
 namespace App\Controllers;
 
+use App\Entities\TipeKamar as TipeKamarEntity;
 use App\Models\TipeKamar as TipeKamarModel;
+use CodeIgniter\HTTP\Files\UploadedFile;
 use CodeIgniter\RESTful\ResourcePresenter;
 
 class TipeKamar extends ResourcePresenter
@@ -38,16 +40,6 @@ class TipeKamar extends ResourcePresenter
     }
 
     /**
-     * Present a view to present a new single resource object
-     *
-     * @return mixed
-     */
-    public function new()
-    {
-        //
-    }
-
-    /**
      * Process the creation/insertion of a new resource object.
      * This should be a POST.
      *
@@ -55,7 +47,21 @@ class TipeKamar extends ResourcePresenter
      */
     public function create()
     {
-        //
+        $foto      = $this->request->getFile('foto');
+        $foto_path = $foto->store(fileName: $foto->getClientName());
+
+        $tipe_kamar = new TipeKamarEntity($this->request->getPost());
+        $tipe_kamar->foto = '/uploads/' . $foto_path;
+
+        helper('filesystem');
+        directory_mirror(WRITEPATH . 'uploads/', FCPATH . 'uploads/', false);
+
+        $tipe_kamar_model = new TipeKamarModel();
+        $berhasil         = $tipe_kamar_model->insert($tipe_kamar);
+
+        return redirect()
+            ->to('/tipe-kamar')
+            ->with('alert', ['type' => 'success', 'message' => 'Tipe Kamar berhasil ditambahkan']);
     }
 
     /**

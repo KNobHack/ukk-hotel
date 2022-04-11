@@ -46,7 +46,7 @@ $the_routes = function () use ($routes) {
     ]);
 
     $routes->presenter('tipe-kamar', [
-        'only' => ['index', 'show'],
+        'only' => ['index', 'show', 'create'],
         'controller' => 'TipeKamar'
     ]);
 
