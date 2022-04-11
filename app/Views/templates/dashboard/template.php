@@ -25,4 +25,5 @@
 	</footer>
 </main>
 
+<?= $this->renderSection('modal') ?>
 <?= $this->include('templates/dashboard/foot') ?>
