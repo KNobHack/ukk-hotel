@@ -27,8 +27,8 @@ class BuatTabelKamar extends Migration
                 'constraint' => 128
             ],
             'tersedia' => [
-                'type'       => 'BOOLEAN',
-                'default'    => 1
+                'type'       => 'TINYINT',
+                'default'    => 3
             ]
         ];
 

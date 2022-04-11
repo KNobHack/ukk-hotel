@@ -36,10 +36,12 @@ $routes->setAutoRoute(false);
 $the_routes = function () use ($routes) {
     $routes->get('/', 'Home::index');
 
-    $routes->get('dashboard', 'Dashboard::index', ['filter' => 'auth:Administrator']);
-
     $routes->get('petugas', 'Auth::petugas');
     $routes->post('petugas', 'Auth::petugasSubmit');
+
+    $routes->get('dashboard', 'Dashboard::index', ['filter' => 'auth:Administrator']);
+
+    $routes->presenter('kamar', ['only' => ['index', 'create', 'update', 'delete']]);
 
     $routes->get('logout', 'Auth::logout');
 };
