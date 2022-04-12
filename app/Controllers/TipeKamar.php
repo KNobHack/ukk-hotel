@@ -4,7 +4,6 @@ namespace App\Controllers;
 
 use App\Entities\TipeKamar as TipeKamarEntity;
 use App\Models\TipeKamar as TipeKamarModel;
-use CodeIgniter\HTTP\Files\UploadedFile;
 use CodeIgniter\RESTful\ResourcePresenter;
 
 class TipeKamar extends ResourcePresenter
@@ -16,7 +15,11 @@ class TipeKamar extends ResourcePresenter
      */
     public function index()
     {
-        $tipe_kamar = (new TipeKamarModel())->findAll();
+        $tipe_kamar_model = new TipeKamarModel();
+        $tipe_kamar = $tipe_kamar_model
+            ->select("*, ({$tipe_kamar_model->undeletableSubQuery()}) AS undeletable")
+            ->findAll();
+
         $chunk_size = ceil(count($tipe_kamar) / 3);
         $tipe_kamar_batch = array_chunk($tipe_kamar, $chunk_size);
         $data['tipe_kamar_batch'] = $tipe_kamar_batch;
@@ -47,6 +50,8 @@ class TipeKamar extends ResourcePresenter
      */
     public function create()
     {
+        // ADD VALIDATION
+
         $foto      = $this->request->getFile('foto');
         $foto_path = $foto->store(fileName: $foto->getClientName());
 

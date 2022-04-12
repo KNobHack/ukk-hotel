@@ -29,6 +29,7 @@ helper('text');
                 <?= word_limiter($tipe_kmr->deskripsi, 12) ?>
               </p>
               <a href="javascript:;" class="btn btn-sm bg-gradient-info">Detail</a>
+              <a href="javascript:;" class="btn btn-sm bg-gradient-danger <?= ($tipe_kmr->undeletable) ? 'disabled' : '' ?>">Hapus</a>
             </div>
           </div>
 

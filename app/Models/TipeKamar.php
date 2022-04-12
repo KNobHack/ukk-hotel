@@ -40,4 +40,14 @@ class TipeKamar extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+
+    // Callbacks
+    public function undeletableSubQuery(): string
+    {
+        $kamar = new Kamar();
+        return $kamar
+            ->select('1')
+            ->where($kamar->table . '.id_tipe_kamar = ' . $this->table . '.id')
+            ->getCompiledSelect();
+    }
 }
