@@ -2,7 +2,7 @@
 
 <?= $this->section('content') ?>
 <div class="row">
-  <div class="col-md-8">
+  <div class="col-md-6 mb-2">
     <div class="card">
       <div class="card-header pb-0">
         <?php if ($alert = session()->getFlashdata('alert')) : ?>
@@ -43,7 +43,57 @@
       </div>
     </div>
   </div>
-</div>
+  <div class="col-md-6">
+    <div class="card mb-3">
+      <div class="card-header pb-0 pt-2 px-2">
+        <span>Fasilitas Kamar</span>
+      </div>
+      <div class="table-responsive">
+        <table class="table align-items-center mb-0">
+          <thead>
+            <tr>
+              <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Nama Fasilitas</th>
+              <th class="text-secondary opacity-7"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <?php if (count($tipe_kamar->fasilitas) < 1) : ?>
+              <tr>
+                <td colspan="2" class="text-center">
+                  <p class="text-xs font-weight-bold mb-0">Belum ada fasilitas</p>
+                </td>
+              </tr>
+            <?php endif ?>
+            <?php foreach ($tipe_kamar->fasilitas as $fasilitas) : ?>
+              <tr>
+                <td>
+                  <p class="text-xs font-weight-bold mb-0"><?= $fasilitas->nama ?></p>
+                </td>
+                <td class="align-middle">
+                  <form action="/fasilitas-kamar/delete/<?= $fasilitas->id ?>" method="POST" class="d-hidden" id="hapus-fasilitas-kamar-<?= $fasilitas->id ?>"></form>
+                  <a href="javascript:;" class="text-secondary font-weight-bold text-xs" onclick="document.getElementById('hapus-fasilitas-kamar-<?= $fasilitas->id ?>').submit()">
+                    Hapus
+                  </a>
+                </td>
+              </tr>
+            <?php endforeach ?>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-body">
+        <form action="/tipe-kamar/add/fasilitas/<?= $tipe_kamar->id ?>" method="POST" class="needs-validation" novalidate>
+          <div class="form-group">
+            <input name="nama" type="text" class="form-control form-control-sm" required="required" placeholder="Nama fasilitas">
+          </div>
+          <div class="d-grid gap-1">
+            <button type="submit" class="btn bg-gradient-primary btn-sm">Tambah Fasilitas</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
 </div>
 <?= $this->endSection() ?>
 

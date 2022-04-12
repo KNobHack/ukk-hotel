@@ -2,7 +2,9 @@
 
 namespace App\Controllers;
 
+use App\Entities\FasilitasKamar as FasilitasKamarEntity;
 use App\Entities\TipeKamar as TipeKamarEntity;
+use App\Models\FasilitasKamar as FasilitasKamarModel;
 use App\Models\TipeKamar as TipeKamarModel;
 use CodeIgniter\RESTful\ResourcePresenter;
 
@@ -152,5 +154,20 @@ class TipeKamar extends ResourcePresenter
                 'type' => 'success',
                 'message' => 'Tipe kamar berhasil di hapus'
             ]);
+    }
+
+    public function fasilitasAdd($id)
+    {
+        $fasilitas_kamar_model = new FasilitasKamarModel();
+        $fasilitas_kamar = new FasilitasKamarEntity([
+            'id_tipe_kamar' => $id,
+            'nama' => $this->request->getPost('nama')
+        ]);
+
+        $berhasil = $fasilitas_kamar_model->insert($fasilitas_kamar);
+
+        return redirect()
+            ->to("/tipe-kamar/{$id}")
+            ->with('alert', ['type' => 'success', 'message' => 'Fasiitas Kamar berhasil ditambahkan']);
     }
 }

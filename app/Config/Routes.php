@@ -48,12 +48,22 @@ $the_routes = function () use ($routes) {
     ]);
 
     $routes->presenter('tipe-kamar', [
-        'only' => ['index', 'show', 'create', 'update', 'delete'],
+        'only'        => ['index', 'show', 'create', 'update', 'delete'],
         'placeholder' => '(:num)',
-        'controller' => 'TipeKamar',
-        'filter' => 'auth:Administrator'
+        'controller'  => 'TipeKamar',
+        'filter'      => 'auth:Administrator'
     ]);
     $routes->post('tipe-kamar/update/foto/(:num)', 'TipeKamar::updateFoto/$1', ['filter' => 'auth:Administrator']);
+    $routes->post('tipe-kamar/add/fasilitas/(:num)', 'TipeKamar::fasilitasAdd/$1', ['filter' => 'auth:Administrator']);
+
+    $routes->presenter('fasilitas-hotel', [
+        'only'        => ['index', 'create', 'update', 'delete'],
+        'placeholder' => '(:num)',
+        'controller'  => 'FasilitasHotel',
+        'filter'      => 'auth:Administrator'
+    ]);
+
+    $routes->post('fasilitas-kamar/delete/(:num)', 'FasilitasKamar::delete/$1', ['filter' => 'auth:Administrator']);
 
     $routes->get('logout', 'Auth::logout');
 };
@@ -62,7 +72,7 @@ $the_routes = function () use ($routes) {
 $the_routes();
 
 // run routes with localization
-$routes->group('{locale}', function () use ($the_routes, $routes) {
+$routes->group('{locale}', function () use ($the_routes) {
     $locale = Services::request()->getUri()->getSegment(1);
     $suportedLoceles = (new App)->supportedLocales;
 

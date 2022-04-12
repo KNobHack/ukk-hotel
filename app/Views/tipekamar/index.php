@@ -25,13 +25,13 @@ helper('text');
 
           <div class="card">
             <div class="card-header p-0 mx-3 mt-3 position-relative z-index-1">
-              <a href="javascript:;" class="d-block">
+              <a href="/tipe-kamar/<?= $tipe_kmr->id ?>" class="d-block">
                 <img src="<?= $tipe_kmr->foto ?>" class="img-fluid border-radius-lg">
               </a>
             </div>
 
             <div class="card-body pt-2">
-              <a href="javascript:;" class="card-title h5 d-block text-darker">
+              <a href="/tipe-kamar/<?= $tipe_kmr->id ?>" class="card-title h5 d-block text-darker">
                 <?= $tipe_kmr->tipe ?>
               </a>
               <p class="card-description mb-4">
