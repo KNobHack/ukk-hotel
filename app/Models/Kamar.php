@@ -13,7 +13,7 @@ class Kamar extends Model
     protected $useAutoIncrement = true;
     protected $insertID         = 0;
     protected $returnType       = KamarEntity::class;
-    protected $useSoftDeletes   = false;
+    protected $useSoftDeletes   = true;
     protected $protectFields    = true;
     protected $allowedFields    = ['id_tipe_kamar', 'no_kamar', 'status'];
 
@@ -89,5 +89,10 @@ class Kamar extends Model
         $this->builder()->join($tp_kmr_tb, $tp_kmr_tb . '.' . $tp_kmr_pk . '=' . $this->table . '.id_tipe_kamar');
 
         return $this;
+    }
+
+    public function getStatuses()
+    {
+        return (new KamarEntity())->getStatuses();
     }
 }

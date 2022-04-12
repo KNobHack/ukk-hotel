@@ -23,12 +23,16 @@ class BuatTabelKamar extends Migration
                 'unsigned'   => true
             ],
             'no_kamar' => [
-                'type'       => 'VARCHAR',
-                'constraint' => 128
+                'type'       => 'SMALLINT',
+                'constraint' => 5
             ],
             'status' => [
                 'type'       => 'TINYINT',
                 'default'    => 3
+            ],
+            'deleted_at' => [
+                'type'       => 'TIMESTAMP',
+                'null'       => true
             ]
         ];
 

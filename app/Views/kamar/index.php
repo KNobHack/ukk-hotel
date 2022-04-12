@@ -2,7 +2,16 @@
 
 <?= $this->section('content') ?>
 
-<button class="btn btn-success" type="button">Tambah Kamar</button>
+<button class="btn btn-success" type="button" data-bs-toggle="modal" data-bs-target="#TambahKamarModal">Tambah Kamar</button>
+
+<?php if ($alert = session()->getFlashdata('alert')) : ?>
+  <div class="alert alert-<?= $alert['type'] ?> alert-dismissible fade show text-white" role="alert">
+    <span class="alert-text"><?= $alert['message'] ?></span>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+<?php endif ?>
 
 <div class="card">
   <div class="card-header pb-0">
@@ -39,9 +48,14 @@
                 <span class="badge badge-sm bg-gradient-<?= $kmr->statusColor ?>"><?= $kmr->status ?></span>
               </td>
               <td class="align-middle">
-                <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit">
-                  Edit
-                </a>
+                <?php if ($kmr->modifiable) : ?>
+                  <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-bs-toggle="modal" data-bs-target="#editKamarModal" data-id-kamar="<?= $kmr->id ?>" data-no-kamar="<?= $kmr->no_kamar ?>" data-id-tipe-kamar="<?= $kmr->id_tipe_kamar ?>" data-status-dalam-perbaikan="<?= intval($kmr->dalam_perbaikan) ?>">
+                    Edit
+                  </a>|
+                  <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-bs-toggle="modal" data-bs-target="#modalKonfirmasiHapus" data-id-kamar="<?= $kmr->id ?>" data-no-kamar="<?= $kmr->no_kamar ?>">
+                    Hapus
+                  </a>
+                <?php endif ?>
               </td>
             </tr>
           <?php endforeach ?>
@@ -51,4 +65,10 @@
   </div>
 </div>
 
+<?= $this->endSection() ?>
+
+<?= $this->section('modal') ?>
+<?= $this->include('kamar/tambah-modal') ?>
+<?= $this->include('kamar/hapus-modal') ?>
+<?= $this->include('kamar/edit-modal') ?>
 <?= $this->endSection() ?>

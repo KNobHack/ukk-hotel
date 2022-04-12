@@ -6,6 +6,12 @@ use CodeIgniter\Entity\Entity;
 
 class Kamar extends Entity
 {
+    protected $attributes = [
+        'id_tipe_kamar' => null,
+        'no_kamar'      => null,
+        'status'        => 1
+    ];
+
     protected $datamap = [];
     protected $dates   = [];
     protected $casts   = [];
@@ -56,5 +62,35 @@ class Kamar extends Entity
         }
 
         return $this->attributes['tipe'];
+    }
+
+    public function getModifiable(): bool
+    {
+        $status = $this->attributes['status'];
+
+        return
+            $status == '1' ||
+            $status == '4';
+    }
+
+    public function getStatuses()
+    {
+        return $this->status;
+    }
+
+    public function getDalamPerbaikan()
+    {
+        return $this->attributes['status'] == '4';
+    }
+
+    public function setDalamPerbaikan(bool $val = true)
+    {
+        if ($val) {
+            $this->attributes['status'] = '4';
+            return $this;
+        }
+
+        $this->attributes['status'] = '1';
+        return $this;
     }
 }
