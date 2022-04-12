@@ -46,8 +46,10 @@ $the_routes = function () use ($routes) {
     ]);
 
     $routes->presenter('tipe-kamar', [
-        'only' => ['index', 'show', 'create'],
-        'controller' => 'TipeKamar'
+        'only' => ['index', 'show', 'create', 'delete'],
+        'placeholder' => '(:num)',
+        'controller' => 'TipeKamar',
+        'filter' => 'auth:Administrator'
     ]);
 
     $routes->get('logout', 'Auth::logout');

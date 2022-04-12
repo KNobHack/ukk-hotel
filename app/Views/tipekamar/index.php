@@ -29,7 +29,7 @@ helper('text');
                 <?= word_limiter($tipe_kmr->deskripsi, 12) ?>
               </p>
               <a href="javascript:;" class="btn btn-sm bg-gradient-info">Detail</a>
-              <a href="javascript:;" class="btn btn-sm bg-gradient-danger <?= ($tipe_kmr->undeletable) ? 'disabled' : '' ?>">Hapus</a>
+              <button type="button" class="btn btn-sm bg-gradient-danger <?= ($tipe_kmr->undeletable) ? 'disabled' : '' ?>" data-bs-toggle="modal" data-bs-target="#modalKonfirmasiHapus" data-tipe-kamar="<?= $tipe_kmr->tipe ?>" data-tipe-kamar-id="<?= $tipe_kmr->id ?>">Hapus</button>
             </div>
           </div>
 
@@ -43,4 +43,5 @@ helper('text');
 
 <?= $this->section('modal') ?>
 <?= $this->include('tipekamar/tambah-modal') ?>
+<?= $this->include('tipekamar/hapus-modal') ?>
 <?= $this->endSection() ?>

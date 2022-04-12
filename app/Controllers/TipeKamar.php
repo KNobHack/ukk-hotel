@@ -95,18 +95,6 @@ class TipeKamar extends ResourcePresenter
     }
 
     /**
-     * Present a view to confirm the deletion of a specific resource object
-     *
-     * @param mixed $id
-     *
-     * @return mixed
-     */
-    public function remove($id = null)
-    {
-        //
-    }
-
-    /**
      * Process the deletion of a specific resource object
      *
      * @param mixed $id
@@ -115,6 +103,20 @@ class TipeKamar extends ResourcePresenter
      */
     public function delete($id = null)
     {
-        //
+        $tipe_kamar_model = new TipeKamarModel();
+        $tipe_kamar = $tipe_kamar_model->find($id);
+
+        if (!$tipe_kamar) { // not found
+            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
+        }
+
+        $tipe_kamar_model->delete($id);
+
+        return redirect()
+            ->to('/tipe-kamar')
+            ->with('alert', [
+                'type' => 'success',
+                'message' => 'Tipe kamar berhasil di hapus'
+            ]);
     }
 }
