@@ -15,7 +15,7 @@ class Kamar extends Model
     protected $returnType       = KamarEntity::class;
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = [];
+    protected $allowedFields    = ['id_tipe_kamar', 'no_kamar', 'status'];
 
     // Dates
     protected $useTimestamps = false;
@@ -41,7 +41,7 @@ class Kamar extends Model
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
 
-    // Custom FUnctions
+    // Custom Functions
 
     /**
      * Merubah beberapa kamar menjadi dipesan
@@ -79,5 +79,15 @@ class Kamar extends Model
     public function checkOut(array $id_kamar): bool
     {
         return true;
+    }
+
+    public function withTipeKamar()
+    {
+        $tipe_kamar_model = new TipeKamar();
+        $tp_kmr_tb =  $tipe_kamar_model->table;
+        $tp_kmr_pk =  $tipe_kamar_model->primaryKey;
+        $this->builder()->join($tp_kmr_tb, $tp_kmr_tb . '.' . $tp_kmr_pk . '=' . $this->table . '.id_tipe_kamar');
+
+        return $this;
     }
 }

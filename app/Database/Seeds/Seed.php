@@ -10,5 +10,6 @@ class Seed extends Seeder
     {
         $this->call('PetugasSeeder');
         $this->call('TipeKamarSeeder');
+        $this->call('KamarSeeder');
     }
 }

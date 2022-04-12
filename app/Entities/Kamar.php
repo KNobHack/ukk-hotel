@@ -13,16 +13,18 @@ class Kamar extends Entity
     protected $status = [
         1 => 'Tersedia',
         2 => 'Dipesan',
-        3 => 'Dipakai'
+        3 => 'Dipakai',
+        4 => 'Dalam perawatan'
     ];
 
     /**
      * Warna setiap status untuk dipakai di view
      */
     protected $statusColor = [
-        1 => 'Success',
-        2 => 'Warning',
-        3 => 'Danger'
+        1 => 'success',
+        2 => 'warning',
+        3 => 'danger',
+        4 => 'danger'
     ];
 
     public function getStatusId()
@@ -40,5 +42,19 @@ class Kamar extends Entity
     {
         $key = $this->attributes['status'];
         return $this->statusColor[$key];
+    }
+
+    public function getNoKamar()
+    {
+        return str_pad($this->attributes['no_kamar'], 3, 0, STR_PAD_LEFT);
+    }
+
+    public function getTipeKamar()
+    {
+        if (!isset($this->attributes['tipe'])) {
+            return $this->attributes['id_tipe_kamar'];
+        }
+
+        return $this->attributes['tipe'];
     }
 }

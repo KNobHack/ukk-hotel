@@ -14,7 +14,10 @@ class Kamar extends ResourcePresenter
      */
     public function index()
     {
-        $kamar = (new KamarModel)->findAll();
+        $kamar = (new KamarModel)
+            ->withTipeKamar()
+            ->findAll();
+
         $data['kamar'] = $kamar;
 
         return view('kamar/index', $data);

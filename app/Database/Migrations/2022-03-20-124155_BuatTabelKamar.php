@@ -26,7 +26,7 @@ class BuatTabelKamar extends Migration
                 'type'       => 'VARCHAR',
                 'constraint' => 128
             ],
-            'tersedia' => [
+            'status' => [
                 'type'       => 'TINYINT',
                 'default'    => 3
             ]

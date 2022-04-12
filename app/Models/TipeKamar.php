@@ -46,7 +46,7 @@ class TipeKamar extends Model
     {
         $kamar = new Kamar();
         return $kamar
-            ->select('1')
+            ->selectCount('id')
             ->where($kamar->table . '.id_tipe_kamar = ' . $this->table . '.id')
             ->getCompiledSelect();
     }
