@@ -7,6 +7,15 @@ helper('text');
 <?= $this->section('content') ?>
 <button class="btn bg-gradient-success" type="button" data-bs-toggle="modal" data-bs-target="#TambahTipeKamarModal">Tambah Tipe Kamar</button>
 
+<?php if ($alert = session()->getFlashdata('alert')) : ?>
+  <div class="alert alert-<?= $alert['type'] ?> alert-dismissible fade show text-white" role="alert">
+    <span class="alert-text"><?= $alert['message'] ?></span>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+<?php endif ?>
+
 <div class="row">
   <?php foreach ($tipe_kamar_batch as $tipe_kamar) : ?>
     <div class="col mx-2">
@@ -28,7 +37,7 @@ helper('text');
               <p class="card-description mb-4">
                 <?= word_limiter($tipe_kmr->deskripsi, 12) ?>
               </p>
-              <a href="javascript:;" class="btn btn-sm bg-gradient-info">Detail</a>
+              <a href="/tipe-kamar/<?= $tipe_kmr->id ?>" class="btn btn-sm bg-gradient-info">Detail</a>
               <button type="button" class="btn btn-sm bg-gradient-danger <?= ($tipe_kmr->undeletable) ? 'disabled' : '' ?>" data-bs-toggle="modal" data-bs-target="#modalKonfirmasiHapus" data-tipe-kamar="<?= $tipe_kmr->tipe ?>" data-tipe-kamar-id="<?= $tipe_kmr->id ?>">Hapus</button>
             </div>
           </div>

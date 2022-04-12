@@ -33,6 +33,27 @@
   <link href="/assets/argon/css/nucleo-svg.css" rel="stylesheet" />
   <!-- CSS Files -->
   <link id="pagestyle" href="/assets/argon/css/argon-dashboard.css?v=2.0.1" rel="stylesheet" />
+
+  <style>
+    .custom-file-button input[type=file] {
+      margin-left: -2px !important;
+    }
+
+    .custom-file-button input[type=file]::-webkit-file-upload-button {
+      display: none;
+    }
+
+    .custom-file-button input[type=file]::file-selector-button {
+      display: none;
+    }
+
+    .custom-file-button:hover label {
+      background-color: #dde0e3;
+      cursor: pointer;
+    }
+  </style>
+
+  <?= $this->renderSection('css') ?>
 </head>
 
 <body class="g-sidenav-show bg-gray-100">

@@ -39,7 +39,17 @@ class TipeKamar extends ResourcePresenter
      */
     public function show($id = null)
     {
-        //
+        $tipe_kamar = (new TipeKamarModel())->find($id);
+        $data['tipe_kamar'] = $tipe_kamar;
+
+        if (!$tipe_kamar) {
+            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
+        }
+
+        $data['breadcumbs'] = ['Tipe Kamar', $tipe_kamar->tipe];
+        $data['heading'] = 'Detail ' . $tipe_kamar->tipe;
+
+        return view('tipekamar/show', $data);
     }
 
     /**
@@ -70,18 +80,6 @@ class TipeKamar extends ResourcePresenter
     }
 
     /**
-     * Present a view to edit the properties of a specific resource object
-     *
-     * @param mixed $id
-     *
-     * @return mixed
-     */
-    public function edit($id = null)
-    {
-        //
-    }
-
-    /**
      * Process the updating, full or partial, of a specific resource object.
      * This should be a POST.
      *
@@ -91,7 +89,43 @@ class TipeKamar extends ResourcePresenter
      */
     public function update($id = null)
     {
-        //
+        $tipe_kamar_model = new TipeKamarModel();
+        $tipe_kamar = $tipe_kamar_model->find($id);
+
+        if (!$tipe_kamar) {
+            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
+        }
+
+        $tipe_kamar->fill($this->request->getPost());
+        $berhasil         = $tipe_kamar_model->save($tipe_kamar);
+
+        return redirect()
+            ->to("/tipe-kamar/{$tipe_kamar->id}")
+            ->with('alert', ['type' => 'success', 'message' => 'Perubahan Tipe Kamar berhasil disimpan']);
+    }
+
+    public function updateFoto($id = null)
+    {
+        $tipe_kamar_model = new TipeKamarModel();
+        $tipe_kamar = $tipe_kamar_model->find($id);
+
+        if (!$tipe_kamar) {
+            throw \CodeIgniter\Exceptions\PageNotFoundException::forPageNotFound();
+        }
+
+        $foto      = $this->request->getFile('foto');
+        $foto_path = $foto->store(fileName: $foto->getClientName());
+
+        $tipe_kamar->foto = '/uploads/' . $foto_path;
+
+        helper('filesystem');
+        directory_mirror(WRITEPATH . 'uploads/', FCPATH . 'uploads/', false);
+
+        $berhasil         = $tipe_kamar_model->save($tipe_kamar);
+
+        return redirect()
+            ->to("/tipe-kamar/{$tipe_kamar->id}")
+            ->with('alert', ['type' => 'success', 'message' => 'Foto Tipe Kamar berhasil diubah']);
     }
 
     /**

@@ -42,15 +42,18 @@ $the_routes = function () use ($routes) {
     $routes->get('dashboard', 'Dashboard::index', ['filter' => 'auth:Administrator']);
 
     $routes->presenter('kamar', [
-        'only' => ['index', 'create', 'update', 'delete']
+        'only' => ['index', 'create', 'update', 'delete'],
+        'placeholder' => '(:num)',
+        'filter' => 'auth:Administrator',
     ]);
 
     $routes->presenter('tipe-kamar', [
-        'only' => ['index', 'show', 'create', 'delete'],
+        'only' => ['index', 'show', 'create', 'update', 'delete'],
         'placeholder' => '(:num)',
         'controller' => 'TipeKamar',
         'filter' => 'auth:Administrator'
     ]);
+    $routes->post('tipe-kamar/update/foto/(:num)', 'TipeKamar::updateFoto/$1', ['filter' => 'auth:Administrator']);
 
     $routes->get('logout', 'Auth::logout');
 };

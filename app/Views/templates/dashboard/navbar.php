@@ -1,7 +1,7 @@
 <?php
 helper('inflector');
 
-if (!isset($breadcumb)) {
+if (!isset($breadcumbs)) {
   $breadcumbs = \Config\Services::request()->getUri()->getSegments();
 }
 $session  = \Config\Services::session();
