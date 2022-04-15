@@ -22,13 +22,9 @@ class TipeKamar extends ResourcePresenter
             ->select("*, ({$tipe_kamar_model->undeletableSubQuery()}) AS undeletable")
             ->findAll();
 
-        $chunk_size = ceil(count($tipe_kamar) / 3);
-        $tipe_kamar_batch = array_chunk($tipe_kamar, $chunk_size);
-        $data['tipe_kamar_batch'] = $tipe_kamar_batch;
-
         $data['title']   = 'Tampil Tipe Kamar';
         $data['heading'] = 'Tampil Tipe Kamar';
-
+        $data['tipe_kamar'] = $tipe_kamar;
         return view('tipekamar/index', $data);
     }
 

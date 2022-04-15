@@ -1,5 +1,5 @@
 <?php
-helper('text');
+helper(['text', 'card']);
 ?>
 
 <?= $this->extend('templates/dashboard/template') ?>
@@ -17,7 +17,7 @@ helper('text');
 <?php endif ?>
 
 <div class="row">
-  <?php foreach ($tipe_kamar_batch as $tipe_kamar) : ?>
+  <?php foreach (cardChunk($tipe_kamar, 3) as $tipe_kamar) : ?>
     <div class="col mx-2">
 
       <?php foreach ($tipe_kamar as $tipe_kmr) : ?>

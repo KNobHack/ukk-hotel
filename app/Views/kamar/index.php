@@ -2,7 +2,7 @@
 
 <?= $this->section('content') ?>
 
-<button class="btn btn-success" type="button" data-bs-toggle="modal" data-bs-target="#TambahKamarModal">Tambah Kamar</button>
+<button class="btn bg-gradient-success" type="button" data-bs-toggle="modal" data-bs-target="#TambahKamarModal">Tambah Kamar</button>
 
 <?php if ($alert = session()->getFlashdata('alert')) : ?>
   <div class="alert alert-<?= $alert['type'] ?> alert-dismissible fade show text-white" role="alert">

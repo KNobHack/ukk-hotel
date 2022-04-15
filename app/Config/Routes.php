@@ -62,6 +62,7 @@ $the_routes = function () use ($routes) {
         'controller'  => 'FasilitasHotel',
         'filter'      => 'auth:Administrator'
     ]);
+    $routes->post('fasilitas-hotel/update/foto/(:num)', 'FasilitasHotel::updateFoto/$1', ['filter' => 'auth:Administrator']);
 
     $routes->post('fasilitas-kamar/delete/(:num)', 'FasilitasKamar::delete/$1', ['filter' => 'auth:Administrator']);
 
