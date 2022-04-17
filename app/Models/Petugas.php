@@ -15,7 +15,7 @@ class Petugas extends Model
     protected $returnType       = PetugasEntity::class;
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = [];
+    protected $allowedFields    = ['nama', 'username', 'password', 'level'];
 
     // Dates
     protected $useTimestamps = false;

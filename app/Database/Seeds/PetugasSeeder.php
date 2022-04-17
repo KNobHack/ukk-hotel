@@ -2,27 +2,27 @@
 
 namespace App\Database\Seeds;
 
+use App\Entities\Petugas as PetugasEntity;
+use App\Models\Petugas as PetugasModel;
 use CodeIgniter\Database\Seeder;
-use CodeIgniter\Test\Fabricator;
-use Tests\Support\Models\PetugasFabricator;
 
 class PetugasSeeder extends Seeder
 {
     public function run()
     {
-        $fabricator = new Fabricator(PetugasFabricator::class);
-        $fabricator->setOverrides([
-            'username' => 'admin',
-            'password' => '123456789',
-            'level'    => 1
-        ]);
-        $fabricator->create();
+        $petugas_model = new PetugasModel();
+        $petugas       = new PetugasEntity();
 
-        $fabricator->setOverrides([
-            'username' => 'resepsionis',
-            'password' => '123',
-            'level'    => 2
-        ]);
-        $fabricator->create();
+        $petugas->nama     = "Administrator";
+        $petugas->username = 'admin';
+        $petugas->password = '123456789';
+        $petugas->level    = 1;
+        $petugas_model->save($petugas);
+
+        $petugas->nama     = "Resepsionis";
+        $petugas->username = 'resepsionis';
+        $petugas->password = '123';
+        $petugas->level    = 2;
+        $petugas_model->save($petugas);
     }
 }
