@@ -2,7 +2,7 @@
 helper(['text', 'card']);
 ?>
 
-<?= $this->extend('templates/dashboard/template') ?>
+<?= $this->extend('templates/dashboard') ?>
 
 <?= $this->section('content') ?>
 <button class="btn bg-gradient-success" type="button" data-bs-toggle="modal" data-bs-target="#TambahTipeKamarModal">Tambah Tipe Kamar</button>
@@ -18,10 +18,10 @@ helper(['text', 'card']);
 
 <div class="row">
   <?php foreach (cardChunk($tipe_kamar, 3) as $tipe_kamar) : ?>
-    <div class="col mx-2">
+    <div class="col-md-4 col-sm-12">
 
       <?php foreach ($tipe_kamar as $tipe_kmr) : ?>
-        <div class="row my-2">
+        <div class="row my-2 mx-1">
 
           <div class="card">
             <div class="card-header p-0 mx-3 mt-3 position-relative z-index-1">

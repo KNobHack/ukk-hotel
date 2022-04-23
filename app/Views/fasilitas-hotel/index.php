@@ -2,7 +2,7 @@
 helper('card');
 ?>
 
-<?= $this->extend('templates/dashboard/template') ?>
+<?= $this->extend('templates/dashboard') ?>
 
 <?= $this->section('content') ?>
 <button class="btn bg-gradient-success" type="button" data-bs-toggle="modal" data-bs-target="#TambahFasilitasHotelModal">Tambah Fasilitas Kamar</button>
