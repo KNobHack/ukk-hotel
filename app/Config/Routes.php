@@ -67,6 +67,11 @@ $the_routes = function () use ($routes) {
     $routes->post('fasilitas-kamar/delete/(:num)', 'FasilitasKamar::delete/$1', ['filter' => 'auth:Administrator']);
 
     $routes->get('logout', 'Auth::logout');
+
+    $routes->get('/health', function () {
+        $response = \Config\Services::response();
+        return $response->setJSON(['status' => 'healty']);
+    });
 };
 
 // run the normal routes
