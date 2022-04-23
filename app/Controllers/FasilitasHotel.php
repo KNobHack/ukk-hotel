@@ -72,7 +72,7 @@ class FasilitasHotel extends ResourcePresenter
 
         return redirect()
             ->to("/fasilitas-hotel")
-            ->with('alert', ['type' => 'success', 'message' => 'Fasilitas Hotel berhasil']);
+            ->with('alert', ['type' => 'success', 'message' => 'Fasilitas Hotel berhasil diedit']);
     }
 
     public function updateFoto($id = null)

@@ -26,12 +26,24 @@ class Auth implements FilterInterface
      */
     public function before(RequestInterface $request, $arguments = null)
     {
+        if ($arguments === null) return $request;
+
         $session = Services::session();
         $level   = $session->get('level');
 
+        if (
+            count($arguments) == 1 &&
+            $arguments[0]     == 'Tamu' &&
+            $level            != 'Tamu'
+        ) {
+            $uri = \Config\Services::uri();
+            $url = urlencode($uri);
+            return redirect()->to("/login?url={$url}");
+        }
+
         if (!in_array($level, $arguments)) {
             return redirect()
-                ->to('/')
+                ->to('/petugas')
                 ->with('alert', ['type' => 'danger', 'message' => 'Anda belum login']);
         }
     }

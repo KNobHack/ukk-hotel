@@ -34,11 +34,12 @@ $routes->setAutoRoute(false);
 
 
 $the_routes = function () use ($routes) {
-    $routes->get('/', 'Home::index');
+    $routes->get('/', 'Home::index', ['filter' => 'auth:Tamu']);
 
     $routes->get('petugas', 'Auth::petugas');
     $routes->post('petugas', 'Auth::petugasSubmit');
 
+    // Admin Routes Start
     $routes->get('dashboard', 'Dashboard::index', ['filter' => 'auth:Administrator']);
 
     $routes->presenter('kamar', [
@@ -65,6 +66,7 @@ $the_routes = function () use ($routes) {
     $routes->post('fasilitas-hotel/update/foto/(:num)', 'FasilitasHotel::updateFoto/$1', ['filter' => 'auth:Administrator']);
 
     $routes->post('fasilitas-kamar/delete/(:num)', 'FasilitasKamar::delete/$1', ['filter' => 'auth:Administrator']);
+    // Admin Routes End
 
     $routes->get('logout', 'Auth::logout');
 
