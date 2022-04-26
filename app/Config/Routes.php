@@ -34,12 +34,14 @@ $routes->setAutoRoute(false);
 
 
 $the_routes = function () use ($routes) {
-    $routes->get('/', 'Home::index', ['filter' => 'auth:Tamu']);
+    // Tamu Routes Start
+    $routes->get('/', 'Home::index');
+    // Tamu Routes End
 
+    // Admin Routes Start
     $routes->get('petugas', 'Auth::petugas');
     $routes->post('petugas', 'Auth::petugasSubmit');
 
-    // Admin Routes Start
     $routes->get('dashboard', 'Dashboard::index', ['filter' => 'auth:Administrator']);
 
     $routes->presenter('kamar', [
