@@ -1,0 +1,15 @@
+{
+	"apiVersion": "v1",
+	"data": {
+		".dockerconfigjson": "eyJhdXRocyI6eyJodHRwOi8vbG9jYWxob3N0OjUwMDAiOnsidXNlcm5hbWUiOiJob3RlbGZhaG1pY3JlZCIsInBhc3N3b3JkIjoiMTIzNDU2Nzg5IiwiZW1haWwiOiJmYWhtaWthbWlsYWhAZ21haWwuY29tIiwiYXV0aCI6ImFHOTBaV3htWVdodGFXTnlaV1E2TVRJek5EVTJOemc1In19fQ=="
+	},
+	"kind": "Secret",
+	"metadata": {
+		"creationTimestamp": "2022-04-19T11:44:35Z",
+		"name": "regcred",
+		"namespace": "default",
+		"resourceVersion": "19014",
+		"uid": "81f1311f-b931-4de5-9c62-dfa27a2ebb6d"
+	},
+	"type": "kubernetes.io/dockerconfigjson"
+}

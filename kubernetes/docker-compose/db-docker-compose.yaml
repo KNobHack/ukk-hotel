@@ -1,0 +1,15 @@
+version: "3.9"
+
+services:
+
+  db:
+    image: mariadb:10.7
+    networks:
+      - hotel
+    environment:
+      MARIADB_DATABASE: db_hotel
+      MARIADB_USER: hotelfahmi
+      MARIADB_PASSWORD: "12345"
+      MARIADB_ROOT_PASSWORD: "123456789"
+    ports:
+      - "3306:3306"

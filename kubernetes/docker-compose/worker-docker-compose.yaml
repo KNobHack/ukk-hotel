@@ -1,0 +1,29 @@
+version: "3.9"
+
+services:
+
+  worker:
+    image: hotelfahmi
+    networks:
+      - hotel
+    environment:
+      CI_ENVIRONMENT: development
+      APP_TYPE      : worker
+      app_baseURL   : "http://localhost/"
+      database_default_hostname: db
+      database_default_database: db_hotel
+      database_default_username: hotelfahmi
+      database_default_password: "12345"
+      database_default_port    : "3306"
+      database_default_DBDriver: MySQLi
+  
+  agent:
+    image: consul
+    networks:
+      - hotel
+    environment:
+      ABCD: abcd
+
+networks:
+  hotel:
+    driver: bridge

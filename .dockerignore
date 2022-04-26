@@ -133,3 +133,12 @@ nb-configuration.xml
 /phpunit*.xml
 /.phpunit.*.cache
 
+# testing
+tests/
+cypress/
+/cypress.json
+/phpunit.xml.dist
+
+# Kubernetes
+kubernetes/
+/Dockerfile
